@@ -1,6 +1,7 @@
 {
   "name": "Xrm.Tools.ModulePluginTraceLog",
   "homepage": "https://github.com/XrmTools/Xrm.Tools.ModulePluginTraceLog",
+  "directory" : "Modules/PluginTraceLog",
   "authors": [
     "David Yack <dyack@coloradotc.com>"
   ],
