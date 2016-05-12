@@ -1,6 +1,6 @@
 
 
-var rcApp = angular.module('moduleApp', ['ui.grid', 'ui.grid.resizeColumns','ui.grid.selection','ui.tree']);
+var rcApp = angular.module('moduleApp', ['ui.grid', 'ui.grid.resizeColumns','ui.grid.selection']);
 rcApp.controller('moduleController', ['$scope', function ($scope) {
       
       $scope.treeOptions = {
@@ -39,9 +39,8 @@ rcApp.controller('moduleController', ['$scope', function ($scope) {
     $scope._LoadDetail= function(traceSummary)
     {
         
-        var queryOption = {
-            Top:100,
-            OrderBy:['performanceconstructorstarttime asc'],
+        var queryOption = {     
+            OrderBy:['performanceconstructorstarttime asc', 'depth asc'],
             FormattedValues:true,
             Filter:"correlationid eq "+traceSummary.entity.corr
         };
