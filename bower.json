@@ -7,9 +7,6 @@
   ],
   "description": "",
  "main": [
-    "./dist/css/*.css",
-    "./dist/*.js",
-    "./dist/bower_components",
     "./dist/index.html"
   ],
 
@@ -18,8 +15,8 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "test",
-    "tests"
+    "bower.json",
+    "gulpfile.js"
   ],
   "devDependencies": {
     "angular-ui-grid": "^3.1.1"
