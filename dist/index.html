@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Plug-in Trace Log Viewer</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular-csp.css">
+    <link rel="styleSheet" href="bower_components/angular-ui-grid/ui-grid.css" />
+    <link rel="styleSheet" href="css/ModuleApp.css" />
+</head>
+
+<body ng-app="moduleApp">
+
+    <div class="container" role="main" ng-controller="moduleController">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#tracelist">Trace List</a></li>
+            <li><a data-toggle="tab" href="#tracedetail">Trace Detail</a></li>
+        </ul>
+        <div class="tab-content">
+            <div id="tracelist" class="tab-pane fade in active">
+                <div ui-grid="queryResultGrid" class="traceGrid" ui-grid-resize-columns ui-grid-selection style="margin-top:25px;height:600px"></div>
+            </div>
+            <div id="tracedetail" class="tab-pane">
+                <!-- Nested node template -->
+                <script type="text/ng-template" id="nodes_renderer.html">
+                    <div class="panel panel-{{node.panelStyle}}">
+                        <div class="panel-heading">
+                            {{node.title}} - {{node.primaryentity}} - {{node.messagename}} - Depth:{{node.depth}} - Duration:{{node.duration}}
+                        </div>
+                        <div class="panel-body" id='panelbody{{node.title}}'>
+                            <div class="panel-info">
+                                 <div class="stepmessage-warning" ng-show="node.stepmessagewarning != null">
+                                        {{node.stepmessagewarning}}
+                                  </div>
+                                  <div>
+                                   <a class="btn btn-primary" ng-show="node.messageblock != null && node.messageblock.length > 0" data-toggle="collapse" href="#messages-{{node.id}}" aria-expanded="false" aria-controls="messages-{{node.id}}">
+                                 Messages
+                               </a>
+                                <a class="btn btn-primary " ng-show="node.exception != null && node.exception.length > 0" data-toggle="collapse" href="#exception-{{node.id}}" aria-expanded="false" aria-controls="exception-{{node.id}}">
+                                 Exception
+                               </a>
+                               </div>
+                                  <div class="collapse" id="messages-{{node.id}}" ng-show="node.messageblock != null">
+                                       
+                                        <pre>{{node.messageblock}}</pre>
+
+                                  </div>
+                                   <div class="collapse" id="exception-{{node.id}}" ng-show="node.exception != null && node.exception.length > 0">
+                                       
+                                        <pre>{{node.exception}}</pre>
+
+                                  </div>
+                             </div>
+                            <div ng-repeat="node in node.items"  ng-include="'nodes_renderer.html'"> </div>             
+                        </div>
+                    </div>
+                </script>
+                <div class="panel panel-default">
+                    <ol  >
+                        <div ng-repeat="node in traceTreeItems" ui-tree-node  ng-include="'nodes_renderer.html'"></div>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="https://secure.aadcdn.microsoftonline-p.com/lib/1.0.0/js/adal.min.js"></script>
+    <script src="https://www.promisejs.org/polyfills/promise-7.0.4.min.js"></script>
+    <script src="https://xrmtoolscode.azureedge.net/CRMWebAPI.js"></script>
+    <script src="https://xrmtoolscode.azureedge.net/CRMWebAPIMetadata.js"></script>
+    <script src="bower_components/angular-ui-grid/ui-grid.min.js"></script>
+    <script src="scripts/ModuleApp.js" type="text/javascript"></script>
+</body>
+
+</html>

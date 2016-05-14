@@ -17,7 +17,8 @@
     "node_modules",
     "bower_components",
     "bower.json",
-    "gulpfile.js"
+    "gulpfile.js",
+    "package.json"
   ],
   "devDependencies": {
     "angular-ui-grid": "^3.1.1"
