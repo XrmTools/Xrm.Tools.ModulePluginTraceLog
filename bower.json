@@ -10,8 +10,7 @@
     "./dist/css/*.css",
     "./dist/*.js",
     "./dist/bower_components",
-    "./dist/index.html",
-  
+    "./dist/index.html"
   ],
 
   "license": "MIT",
